@@ -23,7 +23,7 @@ using FluentMigrator.Expressions;
 
 namespace FluentMigrator.Runner.Generators.SqlServer
 {
-    public class SqlServerCeGenerator : SqlServer2005Generator
+    public class SqlServerCeGenerator : SqlServer2000Generator
     {
         public SqlServerCeGenerator()
             : base(new SqlServerColumn(new SqlServerCeTypeMap()))
@@ -63,6 +63,12 @@ namespace FluentMigrator.Runner.Generators.SqlServer
         public override string Generate(DeleteIndexExpression expression)
         {
             return String.Format("DROP INDEX {0}.{1}", Quoter.QuoteTableName(expression.Index.TableName), Quoter.QuoteIndexName(expression.Index.Name));
+        }
+
+        // ce no support CLUSTERED
+        public override string GetClusterTypeString(CreateIndexExpression column)
+        {
+            return string.Empty;
         }
     }
 }

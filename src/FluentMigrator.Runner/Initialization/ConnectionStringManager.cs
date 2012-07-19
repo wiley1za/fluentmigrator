@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using OpenNETCF;
 
 namespace FluentMigrator.Runner.Initialization
 {
@@ -16,7 +17,7 @@ namespace FluentMigrator.Runner.Initialization
         private readonly string database;
         private string configFile;
         private string connection;
-        private Func<string> machineNameProvider = () => Environment.MachineName;
+        private Func<string> machineNameProvider = () => Environment2.MachineName;
         private bool notUsingConfig;
 
         public ConnectionStringManager(INetConfigManager configManager, IAnnouncer announcer, string connection, string configPath, string assemblyLocation,

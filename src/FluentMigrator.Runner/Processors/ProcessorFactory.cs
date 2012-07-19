@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 
@@ -24,7 +25,7 @@ namespace FluentMigrator.Runner.Processors
 
         public static string ListAvailableProcessorTypes()
         {
-            IEnumerable<Type> processorTypes = typeof(IMigrationProcessorFactory).Assembly.GetExportedTypes()
+            IEnumerable<Type> processorTypes = typeof(IMigrationProcessorFactory).Assembly.GetTypes()
                 .Where(t => typeof(IMigrationProcessorFactory).IsAssignableFrom(t) && !t.IsAbstract && !t.IsInterface);
 
             string processorList = string.Empty;
@@ -34,7 +35,7 @@ namespace FluentMigrator.Runner.Processors
 
                 if (!string.IsNullOrEmpty(processorList))
                     processorList = processorList + ", ";
-                processorList += name.Substring(0, name.IndexOf("ProcessorFactory")).ToLowerInvariant();
+                processorList += name.Substring(0, name.IndexOf("ProcessorFactory")).ToLower(CultureInfo.InvariantCulture);
             }
 
             return processorList;
@@ -53,7 +54,7 @@ namespace FluentMigrator.Runner.Processors
                         if (factories == null)
                         {
                             Assembly assembly = typeof(IMigrationProcessorFactory).Assembly;
-                            var types = assembly.GetExportedTypes().Where(t => typeof(IMigrationProcessorFactory).IsAssignableFrom(t) && !t.IsInterface && !t.IsAbstract).ToList();
+                            var types = assembly.GetTypes().Where(t => typeof(IMigrationProcessorFactory).IsAssignableFrom(t) && !t.IsInterface && !t.IsAbstract).ToList();
                             factories = new List<IMigrationProcessorFactory>(types.Count);
                             foreach (var type in types)
                             {

@@ -14,6 +14,5 @@ namespace FluentMigrator.Runner.Generators
 
         public DatabaseOperationNotSupportedException() : base() { }
 
-        public DatabaseOperationNotSupportedException(SerializationInfo info, StreamingContext context) : base(info, context) { }
     }
 }

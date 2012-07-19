@@ -36,7 +36,7 @@ namespace FluentMigrator.Runner
 
         public IEnumerable<IMigration> FindProfilesIn(Assembly assembly, string profile)
         {
-            IEnumerable<Type> matchedTypes = assembly.GetExportedTypes()
+            IEnumerable<Type> matchedTypes = assembly.GetTypes().Where(type => type.IsPublic)
                 .Where(t => Conventions.TypeIsProfile(t) && t.GetOneAttribute<ProfileAttribute>().ProfileName.ToLower() == profile.ToLower());
 
             foreach (Type type in matchedTypes)

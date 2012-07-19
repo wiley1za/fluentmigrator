@@ -24,7 +24,7 @@ namespace FluentMigrator.Runner.Announcers
     {
         public void Header()
         {
-            Console.ForegroundColor = ConsoleColor.Green;
+            //Console.ForegroundColor = ConsoleColor.Green;
             HorizontalRule();
             Write("=============================== FluentMigrator ================================");
             HorizontalRule();
@@ -33,7 +33,7 @@ namespace FluentMigrator.Runner.Announcers
             Write("Ask For Help:");
             Write("  http://groups.google.com/group/fluentmigrator-google-group");
             HorizontalRule();
-            Console.ResetColor();
+            //Console.ResetColor();
         }
 
         public void HorizontalRule()
@@ -43,31 +43,31 @@ namespace FluentMigrator.Runner.Announcers
 
         public override void Heading(string message)
         {
-            Console.ForegroundColor = ConsoleColor.Green;
+            //Console.ForegroundColor = ConsoleColor.Green;
             HorizontalRule();
             base.Heading(message);
             HorizontalRule();
-            Console.ResetColor();
+           // Console.ResetColor();
         }
 
         public override void Say(string message)
         {
-            Console.ForegroundColor = ConsoleColor.White;
+           // Console.ForegroundColor = ConsoleColor.White;
             base.Say(string.Format("[+] {0}", message));
-            Console.ResetColor();
+           // Console.ResetColor();
         }
 
         public override void ElapsedTime(TimeSpan timeSpan)
         {
-            Console.ResetColor();
+           // Console.ResetColor();
             base.ElapsedTime(timeSpan);
         }
 
         public override void Error(string message)
         {
-            Console.ForegroundColor = ConsoleColor.Red;
+            //Console.ForegroundColor = ConsoleColor.Red;
             Console.Error.WriteLine(string.Format("!!! {0}", message));
-            Console.ResetColor();
+            //Console.ResetColor();
         }
 
         public void Write(string message)

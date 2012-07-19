@@ -18,7 +18,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using FluentMigrator.Infrastructure.Extensions;
 using FluentMigrator.Model;
@@ -102,7 +104,7 @@ namespace FluentMigrator.Infrastructure
 
         public static string GetWorkingDirectory()
         {
-            return Environment.CurrentDirectory;
+            return Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase);
         }
 
         public static string GetConstraintName(ConstraintDefinition expression)

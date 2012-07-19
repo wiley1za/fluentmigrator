@@ -1,10 +1,16 @@
 namespace FluentMigrator.Runner.Processors.SqlServer
 {
-    public class SqlServerCeDbFactory : ReflectionBasedDbFactory
+    public class SqlServerCeDbFactory : DbFactoryBase
     {
-        public SqlServerCeDbFactory()
-            : base("System.Data.SqlServerCe", "System.Data.SqlServerCe.SqlCeProviderFactory")
+
+        protected override DbProviderFactory CreateFactory()
         {
+            
+            return new SqlCeProviderFactory();
         }
+    }
+
+    public class SqlCeProviderFactory : DbProviderFactory
+    {
     }
 }

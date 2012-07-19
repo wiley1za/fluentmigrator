@@ -19,7 +19,9 @@
 
 using System;
 using System.Data;
+using System.Globalization;
 using System.IO;
+using System.Linq;
 using FluentMigrator.Builders.Execute;
 
 namespace FluentMigrator.Runner.Processors.SqlServer
@@ -198,9 +200,9 @@ namespace FluentMigrator.Runner.Processors.SqlServer
             {
                 try
                 {
-                    foreach (string line in sql.Split(new[] { "\n", "\r" }, StringSplitOptions.RemoveEmptyEntries))
+                    foreach (string line in sql.Split(new[] { '\n', '\r' }).Where(s => !string.IsNullOrEmpty(s))) 
                     {
-                        if (line.ToUpperInvariant().Trim() == "GO")
+                        if (line.ToUpper(CultureInfo.InvariantCulture).Trim() == "GO")
                         {
                             if (!string.IsNullOrEmpty(sqlBatch))
                             {

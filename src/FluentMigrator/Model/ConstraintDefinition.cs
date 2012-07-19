@@ -19,7 +19,7 @@ namespace FluentMigrator.Model
         public string SchemaName { get; set; }
         public string ConstraintName { get; set; }
         public string TableName { get; set; }
-        public ICollection<string> Columns = new HashSet<string>();
+        public ICollection<string> Columns = new List<string>();
 
 
         /// <summary>

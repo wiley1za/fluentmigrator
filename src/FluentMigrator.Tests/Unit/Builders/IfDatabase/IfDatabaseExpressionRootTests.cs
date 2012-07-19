@@ -20,7 +20,7 @@
 using System;
 using FluentMigrator.Builders.IfDatabase;
 using FluentMigrator.Infrastructure;
-using FluentMigrator.Runner.Processors.Jet;
+using FluentMigrator.Runner.Processors.SqlServer;
 using Moq;
 using NUnit.Framework;
 using NUnit.Should;
@@ -152,7 +152,7 @@ namespace FluentMigrator.Tests.Unit.Builders.IfDatabase
         {
             // Arrange
 
-            var context = new MigrationContext(new MigrationConventions(), processor ?? new JetProcessor(null, null, null, null), GetType().Assembly, null);
+            var context = new MigrationContext(new MigrationConventions(), processor ?? new SqlServerCeProcessor(null, null, null, null, null), GetType().Assembly, null);
 
 
             var expression = new IfDatabaseExpressionRoot(context, databaseType.ToArray());
